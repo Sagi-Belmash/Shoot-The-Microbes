@@ -29,8 +29,13 @@ func _process(_delta: float) -> void:
 		can_shoot = true
 
 
-func game_over() -> void:
-	$AsteroidTimer.stop()
+func ship_hit() -> void:
+	$Lives.remove_life()
+	if $Lives.lives > 0:
+		$Ship.ship_hit()
+	else:
+		$AsteroidTimer.stop()
+		$Ship.game_over()
 
 
 func new_game():

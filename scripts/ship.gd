@@ -35,6 +35,17 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	hit.emit()
+
+func ship_hit():
+	$CollisionPolygon2D.set_deferred("disabled", true)
+	for i in range(5):
+		hide()
+		await get_tree().create_timer(0.1).timeout
+		show()
+		await get_tree().create_timer(0.1).timeout
+	$CollisionPolygon2D.set_deferred("disabled", false)
+
+func game_over():
 	$CollisionPolygon2D.set_deferred("disabled", true)
 	await get_tree().create_timer(0.1).timeout
 	z_index = 100

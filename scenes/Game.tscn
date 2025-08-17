@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbn18veehan4q"]
+[gd_scene load_steps=7 format=3 uid="uid://bbn18veehan4q"]
 
 [ext_resource type="Script" uid="uid://csja0gtly5d8u" path="res://scripts/game.gd" id="1_ibkli"]
 [ext_resource type="PackedScene" uid="uid://3x1l226dhege" path="res://scenes/Ship.tscn" id="3_78awf"]
 [ext_resource type="PackedScene" uid="uid://b4ibauabpn711" path="res://scenes/Asteroid.tscn" id="3_cpr0p"]
 [ext_resource type="PackedScene" uid="uid://bxecfsljjxh7l" path="res://scenes/Bullet.tscn" id="3_s0nni"]
+[ext_resource type="PackedScene" uid="uid://diwlbglo7dxsn" path="res://scenes/Lives.tscn" id="5_s0nni"]
 
 [sub_resource type="Curve2D" id="Curve2D_qbsmt"]
 _data = {
@@ -32,6 +33,8 @@ position = Vector2(-72, -64)
 
 [node name="Ship" parent="." instance=ExtResource("3_78awf")]
 
+[node name="Lives" parent="." instance=ExtResource("5_s0nni")]
+
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]
-[connection signal="hit" from="Ship" to="." method="game_over"]
+[connection signal="hit" from="Ship" to="." method="ship_hit"]
