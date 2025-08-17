@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #fff;
+        stroke-width: 15.6px;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="Asteroid2" class="cls-1" d="M447,111L235,91,123,176,69,364l35,119L78,686l132,31L196,866l164,98,177-76,219,70,71-68,89-137,68-119L920,512l11-122L838,230l-4-94L693,75,539,61Z"/>
+</svg>

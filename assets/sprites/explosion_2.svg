@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #fff;
+        stroke-width: 15.6px;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="Explosion2" class="cls-1" d="M453,214L489,23l60,134L674,38l4,181L854,79,812,263l172-53L870,405l114-5L807,571l199,91L821,693,975,848,763,816l72,195L633,885l-21,122L531,824,336,987l50-182L152,889l72-134L34,752,205,634,91,587l109-53L38,443l223-33L46,201l241,73L159,11,369,201,355,66Z"/>
+</svg>

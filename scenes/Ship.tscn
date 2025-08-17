@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://3x1l226dhege"]
+
+[ext_resource type="Texture2D" uid="uid://bxekconmyld5y" path="res://assets/sprites/ship_off.svg" id="1_gjfe0"]
+[ext_resource type="Script" uid="uid://cqx8laifpldby" path="res://scripts/ship.gd" id="1_qq457"]
+[ext_resource type="Texture2D" uid="uid://rcya2hiesypk" path="res://assets/sprites/ship_on.svg" id="2_qq457"]
+[ext_resource type="Texture2D" uid="uid://brwy4v6676hyv" path="res://assets/sprites/explosion_1.svg" id="2_slbyd"]
+[ext_resource type="Texture2D" uid="uid://cnhxy8fvqb57d" path="res://assets/sprites/explosion_2.svg" id="3_7ty2q"]
+[ext_resource type="Texture2D" uid="uid://y3xecndofkyi" path="res://assets/sprites/explosion_3.svg" id="4_tgbo8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ky8oh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_slbyd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7ty2q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tgbo8")
+}],
+"loop": true,
+"name": &"explode",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gjfe0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qq457")
+}],
+"loop": true,
+"name": &"move",
+"speed": 24.0
+}]
+
+[node name="Ship" type="Area2D"]
+script = ExtResource("1_qq457")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.075, 0.075)
+sprite_frames = SubResource("SpriteFrames_ky8oh")
+animation = &"move"
+frame_progress = 0.256041
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-23, 24, 23, 24, 0, -42)
+disabled = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
