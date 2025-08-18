@@ -25,7 +25,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			$AnimatedSprite2D.stop()
 		
-		current_speed -= SPEED / 2 * delta
+			@warning_ignore("integer_division")
+			current_speed -= SPEED / 4 * delta
 		current_speed = clampf(current_speed, 0, 500)
 		velocity = dirVec * current_speed
 		position += velocity * delta
@@ -33,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	
 
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	hit.emit()
 
 func ship_hit():

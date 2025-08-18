@@ -12,6 +12,17 @@ const base_velocity = Vector2(200, 0)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	new_game()
+	var screen_size = get_viewport().size
+	$StartPosition.position = screen_size / 2
+	
+	# Setting Asteroid Path's points
+	var point_offset = 64
+	var curve = $AsteroidPath.get_curve()
+	curve.add_point(Vector2(-point_offset, -point_offset))
+	curve.add_point(Vector2(screen_size.x + point_offset, -point_offset))
+	curve.add_point(Vector2(screen_size.x + point_offset, screen_size.y + point_offset))
+	curve.add_point(Vector2(-point_offset, screen_size.y + point_offset))
+	curve.add_point(Vector2(-point_offset, -point_offset))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,6 +61,9 @@ func _on_start_timer_timeout() -> void:
 
 
 func _on_asteroid_timer_timeout() -> void:
+	call_deferred("_spawn_asteroid")
+
+func _spawn_asteroid():
 	var asteroid = asteroid_scene.instantiate()
 	
 	var asteroid_spawn_location = $AsteroidPath/AsteroidSpawnLocation
@@ -69,13 +83,18 @@ func _on_asteroid_timer_timeout() -> void:
 	asteroid.linear_velocity *= asteroid.speed_scale[asteroid.asteroid_size]
 
 
+
 func _on_asteroid_destroyed(position: Vector2, asteroid_size: int):
 	if asteroid_size > 0:
 		for i in range(3):
-			var asteroid = asteroid_scene.instantiate()
-			asteroid.position = position
-			asteroid.linear_velocity = base_velocity.rotated(randf_range(0, 2 * PI))
-			asteroid.connect("destroyed", _on_asteroid_destroyed)
-			add_child(asteroid)
-			asteroid._set_asteroid_size(asteroid_size - 1)
-			asteroid.linear_velocity *= asteroid.speed_scale[asteroid.asteroid_size]
+			call_deferred("_create_asteroid_child", position, asteroid_size - 1)
+
+
+func _create_asteroid_child(position: Vector2, asteroid_size: int):
+	var asteroid = asteroid_scene.instantiate()
+	asteroid.position = position
+	asteroid.linear_velocity = base_velocity.rotated(randf_range(0, 2 * PI))
+	asteroid.connect("destroyed", _on_asteroid_destroyed)
+	add_child(asteroid)
+	asteroid._set_asteroid_size(asteroid_size)
+	asteroid.linear_velocity *= asteroid.speed_scale[asteroid_size]

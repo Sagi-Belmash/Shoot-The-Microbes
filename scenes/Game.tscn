@@ -7,10 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://diwlbglo7dxsn" path="res://scenes/Lives.tscn" id="5_s0nni"]
 
 [sub_resource type="Curve2D" id="Curve2D_qbsmt"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -72, -64, 0, 0, 0, 0, 1216, -64, 0, 0, 0, 0, 1216, 712, 0, 0, 0, 0, -72, 712, 0, 0, 0, 0, -72, -64)
-}
-point_count = 5
 
 [node name="Node" type="Node"]
 script = ExtResource("1_ibkli")
@@ -18,7 +14,6 @@ asteroid_scene = ExtResource("3_cpr0p")
 bullet_scene = ExtResource("3_s0nni")
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(576, 324)
 
 [node name="StartTimer" type="Timer" parent="."]
 one_shot = true
@@ -29,7 +24,8 @@ one_shot = true
 curve = SubResource("Curve2D_qbsmt")
 
 [node name="AsteroidSpawnLocation" type="PathFollow2D" parent="AsteroidPath"]
-position = Vector2(-72, -64)
+position = Vector2(-64, 1504)
+rotation = -1.5708
 
 [node name="Ship" parent="." instance=ExtResource("3_78awf")]
 
