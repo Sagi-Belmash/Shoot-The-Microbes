@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbn18veehan4q"]
+[gd_scene load_steps=8 format=3 uid="uid://bbn18veehan4q"]
 
 [ext_resource type="Script" uid="uid://csja0gtly5d8u" path="res://scripts/game.gd" id="1_ibkli"]
 [ext_resource type="PackedScene" uid="uid://3x1l226dhege" path="res://scenes/Ship.tscn" id="3_78awf"]
 [ext_resource type="PackedScene" uid="uid://b4ibauabpn711" path="res://scenes/Asteroid.tscn" id="3_cpr0p"]
 [ext_resource type="PackedScene" uid="uid://bxecfsljjxh7l" path="res://scenes/Bullet.tscn" id="3_s0nni"]
 [ext_resource type="PackedScene" uid="uid://diwlbglo7dxsn" path="res://scenes/Lives.tscn" id="5_s0nni"]
+[ext_resource type="PackedScene" uid="uid://dhb5trhukdj85" path="res://scenes/PauseMenu.tscn" id="6_aug50"]
 
 [sub_resource type="Curve2D" id="Curve2D_qbsmt"]
 
@@ -31,6 +32,10 @@ rotation = -1.5708
 
 [node name="Lives" parent="." instance=ExtResource("5_s0nni")]
 
+[node name="PauseMenu" parent="." instance=ExtResource("6_aug50")]
+visible = false
+
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]
-[connection signal="hit" from="Ship" to="." method="ship_hit"]
+[connection signal="hit" from="Ship" to="." method="_on_ship_hit"]
+[connection signal="shoot" from="Ship" to="." method="_on_ship_shoot"]

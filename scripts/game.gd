@@ -7,7 +7,8 @@ var score
 var SHOOT_DELAY = 0.3
 var can_shoot = true
 
-const base_velocity = Vector2(200, 0)
+const ASTEROID_BASE_VELOCITY = Vector2(200, 0)
+const BULLET_VELOCITY = Vector2(400,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,26 +28,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Input.is_action_pressed("shoot") and can_shoot:
-		var bullet = bullet_scene.instantiate()
-		bullet.rotation = $Ship.rotation
-		bullet.position = $Ship.position + Vector2.from_angle($Ship.rotation - PI / 2) * 50
-		
-		bullet.linear_velocity = base_velocity.rotated($Ship.rotation - PI / 2)
-		
-		add_child(bullet)
-		can_shoot = false
-		await get_tree().create_timer(SHOOT_DELAY).timeout
-		can_shoot = true
-
-
-func ship_hit() -> void:
-	$Lives.remove_life()
-	if $Lives.lives > 0:
-		$Ship.ship_hit()
-	else:
-		$AsteroidTimer.stop()
-		$Ship.game_over()
+	if Input.is_action_just_pressed("pause"):
+		pause()
 
 
 func new_game():
@@ -56,12 +39,16 @@ func new_game():
 	$StartTimer.start()
 
 
+func pause():
+	print("pause")
+
 func _on_start_timer_timeout() -> void:
 	$AsteroidTimer.start()
 
 
 func _on_asteroid_timer_timeout() -> void:
 	call_deferred("_spawn_asteroid")
+
 
 func _spawn_asteroid():
 	var asteroid = asteroid_scene.instantiate()
@@ -76,7 +63,7 @@ func _spawn_asteroid():
 	direction += randf_range(-PI / 4, PI / 4)
 	#asteroid.rotation = direction
 	
-	asteroid.linear_velocity = base_velocity.rotated(direction)
+	asteroid.linear_velocity = ASTEROID_BASE_VELOCITY.rotated(direction)
 	
 	asteroid.connect("destroyed", _on_asteroid_destroyed)
 	add_child(asteroid)
@@ -93,8 +80,28 @@ func _on_asteroid_destroyed(position: Vector2, asteroid_size: int):
 func _create_asteroid_child(position: Vector2, asteroid_size: int):
 	var asteroid = asteroid_scene.instantiate()
 	asteroid.position = position
-	asteroid.linear_velocity = base_velocity.rotated(randf_range(0, 2 * PI))
+	asteroid.linear_velocity = ASTEROID_BASE_VELOCITY.rotated(randf_range(0, 2 * PI))
 	asteroid.connect("destroyed", _on_asteroid_destroyed)
 	add_child(asteroid)
 	asteroid._set_asteroid_size(asteroid_size)
 	asteroid.linear_velocity *= asteroid.speed_scale[asteroid_size]
+
+
+
+func _on_ship_hit() -> void:
+	$Lives.remove_life()
+	if $Lives.lives > 0:
+		$Ship.ship_hit()
+	else:
+		$AsteroidTimer.stop()
+		$Ship.game_over()
+
+
+func _on_ship_shoot():
+	var bullet = bullet_scene.instantiate()
+	bullet.rotation = $Ship.rotation
+	bullet.position = $Ship.position + Vector2.from_angle($Ship.rotation - PI / 2) * 50
+	
+	bullet.linear_velocity = BULLET_VELOCITY.rotated($Ship.rotation - PI / 2)
+	
+	add_child(bullet)
