@@ -1,0 +1,166 @@
+[gd_scene load_steps=11 format=3 uid="uid://2vbtn5wwtp12"]
+
+[ext_resource type="StyleBox" uid="uid://dokl011h350b2" path="res://assets/styles/Window.tres" id="1_16j7q"]
+[ext_resource type="Script" uid="uid://eba7alsldn0p" path="res://scripts/options.gd" id="1_so2rw"]
+[ext_resource type="FontFile" uid="uid://bsi4q0ff6yrdo" path="res://assets/fonts/Xolonium-Regular.ttf" id="2_wxm4j"]
+[ext_resource type="PackedScene" uid="uid://bryp0fjw86bk1" path="res://scenes/general/Button.tscn" id="3_wxm4j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p1def"]
+content_margin_bottom = 50.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlerd"]
+bg_color = Color(0.835294, 0.835294, 0.835294, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_so2rw"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1def"]
+bg_color = Color(0.834614, 0.834614, 0.834614, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.498039, 0.498039, 0.498039, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wxm4j"]
+content_margin_left = 40.0
+content_margin_top = 40.0
+content_margin_right = 40.0
+content_margin_bottom = 40.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.497474, 0.497474, 0.497473, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uo1me"]
+bg_color = Color(0.61339, 0.61339, 0.61339, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -513.0
+offset_top = -282.5
+offset_right = 513.0
+offset_bottom = 282.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_so2rw")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -426.0
+offset_top = -217.0
+offset_right = 426.0
+offset_bottom = 217.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_16j7q")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -290.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="OptionsLabel" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wxm4j")
+theme_override_font_sizes/font_size = 84
+theme_override_styles/normal = SubResource("StyleBoxEmpty_p1def")
+text = "Options"
+horizontal_alignment = 1
+
+[node name="FullScreen" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 215
+
+[node name="FullScreenLabel" type="Label" parent="Panel/VBoxContainer/FullScreen"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wxm4j")
+theme_override_font_sizes/font_size = 64
+text = "Fullscreen:"
+
+[node name="FullscreenBtn" type="Button" parent="Panel/VBoxContainer/FullScreen"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_xlerd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_so2rw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p1def")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wxm4j")
+toggle_mode = true
+
+[node name="Volume" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 150
+
+[node name="VolumeLabel" type="Label" parent="Panel/VBoxContainer/Volume"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wxm4j")
+theme_override_font_sizes/font_size = 64
+text = "Volume:"
+
+[node name="VolumeSlider" type="HSlider" parent="Panel/VBoxContainer/Volume"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+theme_override_styles/slider = SubResource("StyleBoxFlat_uo1me")
+rounded = true
+
+[node name="Back" parent="Panel" instance=ExtResource("3_wxm4j")]
+layout_mode = 1
+offset_right = 206.0
+offset_bottom = 78.0
+text = "Back"
+
+[connection signal="pressed" from="Panel/VBoxContainer/FullScreen/FullscreenBtn" to="." method="_on_fullscreen_pressed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/Volume/VolumeSlider" to="." method="_on_volume_changed"]
+[connection signal="pressed" from="Panel/Back" to="." method="_on_back_pressed"]

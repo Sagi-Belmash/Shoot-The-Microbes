@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwrsq7prehsx2"]
+
+[ext_resource type="StyleBox" uid="uid://dokl011h350b2" path="res://assets/styles/Window.tres" id="1_m2woc"]
+[ext_resource type="Script" uid="uid://pxgf50qqmup2" path="res://scripts/leaderboard.gd" id="1_mevjk"]
+[ext_resource type="FontFile" uid="uid://bsi4q0ff6yrdo" path="res://assets/fonts/Xolonium-Regular.ttf" id="2_rq4g5"]
+[ext_resource type="PackedScene" uid="uid://bpvbbnp0peac3" path="res://scenes/main_menu/LeaderboardItem.tscn" id="3_in66j"]
+
+[node name="Leaderboard" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mevjk")
+LBItem = ExtResource("3_in66j")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -440.5
+offset_top = -304.0
+offset_right = 440.5
+offset_bottom = 304.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_m2woc")
+
+[node name="TabContainer" type="TabContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -353.5
+offset_top = -194.0
+offset_right = 354.5
+offset_bottom = 308.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_rq4g5")
+theme_override_font_sizes/font_size = 41
+tab_alignment = 1
+current_tab = 0
+
+[node name="Easy" type="ScrollContainer" parent="Panel/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/Easy"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Normal" type="ScrollContainer" parent="Panel/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/Normal"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="Hard" type="ScrollContainer" parent="Panel/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/Hard"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="LeaderboardLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -213.5
+offset_right = 213.5
+offset_bottom = 78.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_rq4g5")
+theme_override_font_sizes/font_size = 64
+text = "Leaderboard"

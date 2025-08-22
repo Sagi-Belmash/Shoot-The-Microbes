@@ -43,7 +43,6 @@ metadata/_edit_group_ = true
 scale = Vector2(0.075, 0.075)
 sprite_frames = SubResource("SpriteFrames_ky8oh")
 animation = &"move"
-frame_progress = 0.256041
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-23, 24, 23, 24, 0, -42)

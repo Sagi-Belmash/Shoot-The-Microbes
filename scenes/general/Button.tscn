@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bryp0fjw86bk1"]
+
+[ext_resource type="FontFile" uid="uid://bsi4q0ff6yrdo" path="res://assets/fonts/Xolonium-Regular.ttf" id="1_rtit6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5roi"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ywcaw"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.662452, 0.662452, 0.662452, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sejoc"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.0430392, 0.0430392, 0.0430392, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtit6"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.136826, 0.136826, 0.136826, 1)
+
+[node name="Button" type="Button"]
+theme_override_fonts/font = ExtResource("1_rtit6")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxFlat_u5roi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ywcaw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sejoc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_rtit6")
+text = "Temp Text"

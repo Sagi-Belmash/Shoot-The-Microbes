@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://8kvj7docff4f"]
+
+[ext_resource type="Script" uid="uid://d0swdmkygyxv4" path="res://scripts/pause_menu.gd" id="1_g4jo0"]
+[ext_resource type="PackedScene" uid="uid://bryp0fjw86bk1" path="res://scenes/general/Button.tscn" id="1_jvnd5"]
+[ext_resource type="StyleBox" uid="uid://dokl011h350b2" path="res://assets/styles/Window.tres" id="1_komsw"]
+
+[node name="PauseMenu" type="PanelContainer"]
+anchors_preset = -1
+anchor_right = 0.264375
+anchor_bottom = 0.475556
+theme_override_styles/panel = ExtResource("1_komsw")
+script = ExtResource("1_g4jo0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 36
+alignment = 1
+
+[node name="Resume" parent="VBoxContainer" instance=ExtResource("1_jvnd5")]
+layout_mode = 2
+text = "Resume"
+
+[node name="Restart" parent="VBoxContainer" instance=ExtResource("1_jvnd5")]
+layout_mode = 2
+text = "Restart"
+
+[node name="MainMenu" parent="VBoxContainer" instance=ExtResource("1_jvnd5")]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Quit" parent="VBoxContainer" instance=ExtResource("1_jvnd5")]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

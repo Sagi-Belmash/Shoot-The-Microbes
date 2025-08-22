@@ -1,0 +1,100 @@
+[gd_scene load_steps=6 format=3 uid="uid://jj2q0b0r5213"]
+
+[ext_resource type="PackedScene" uid="uid://bryp0fjw86bk1" path="res://scenes/general/Button.tscn" id="2_bfaec"]
+[ext_resource type="PackedScene" uid="uid://bbn18veehan4q" path="res://scenes/game/Game.tscn" id="2_d5w8a"]
+[ext_resource type="FontFile" uid="uid://bsi4q0ff6yrdo" path="res://assets/fonts/Xolonium-Regular.ttf" id="2_omx5x"]
+[ext_resource type="Script" uid="uid://cpi60kig8723v" path="res://scripts/difficulty.gd" id="2_rissl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71vhk"]
+bg_color = Color(0.0196078, 0.0196078, 0.0196078, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.360784, 0.360784, 0.360784, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+expand_margin_left = 150.0
+expand_margin_top = 130.0
+expand_margin_right = 150.0
+expand_margin_bottom = 80.0
+
+[node name="Difficulty" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_rissl")
+game = ExtResource("2_d5w8a")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -301.0
+offset_top = -216.0
+offset_right = 301.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_71vhk")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 36
+alignment = 2
+
+[node name="DifficultyLabel" type="Label" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_omx5x")
+theme_override_font_sizes/font_size = 64
+text = "Choose Difficulty:"
+horizontal_alignment = 1
+
+[node name="Easy" parent="PanelContainer/HBoxContainer" instance=ExtResource("2_bfaec")]
+layout_mode = 2
+tooltip_text = "5 lives
+Lower asteroid spawn rate"
+text = "Easy"
+
+[node name="Medium" parent="PanelContainer/HBoxContainer" instance=ExtResource("2_bfaec")]
+layout_mode = 2
+tooltip_text = "3 lives
+Medium asteroid spawn rate"
+text = "Normal
+"
+
+[node name="Hard" parent="PanelContainer/HBoxContainer" instance=ExtResource("2_bfaec")]
+layout_mode = 2
+tooltip_text = "1 life
+Higher asteroid spawn rate"
+text = "Hard"
+
+[node name="Back" parent="." instance=ExtResource("2_bfaec")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -408.0
+offset_top = -306.0
+offset_right = -202.0
+offset_bottom = -228.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+
+[connection signal="pressed" from="PanelContainer/HBoxContainer/Easy" to="." method="_on_easy_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/Medium" to="." method="_on_medium_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/Hard" to="." method="_on_hard_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

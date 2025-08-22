@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqkx4slx8fjmt"]
+
+[ext_resource type="Script" uid="uid://bhgmmh6ktjki5" path="res://scripts/new_high_score.gd" id="1_u1k5a"]
+[ext_resource type="StyleBox" uid="uid://dokl011h350b2" path="res://assets/styles/Window.tres" id="2_p13my"]
+[ext_resource type="FontFile" uid="uid://bsi4q0ff6yrdo" path="res://assets/fonts/Xolonium-Regular.ttf" id="3_2w6v6"]
+[ext_resource type="PackedScene" uid="uid://bryp0fjw86bk1" path="res://scenes/general/Button.tscn" id="4_gdi4d"]
+
+[node name="NewHighScore" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u1k5a")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -544.0
+offset_top = -179.5
+offset_right = 544.0
+offset_bottom = 179.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_p13my")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -536.0
+offset_right = 536.0
+offset_bottom = 123.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="HighScoreLabel" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_2w6v6")
+theme_override_font_sizes/font_size = 48
+text = "You got a new high score of ? points!
+Enter your name to be on the leaderboard:"
+horizontal_alignment = 1
+
+[node name="Name" type="Control" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="NameEdit" type="TextEdit" parent="Panel/VBoxContainer/Name"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -318.5
+offset_top = 25.5
+offset_right = 318.5
+offset_bottom = 102.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/Name"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -279.0
+offset_top = 137.0
+offset_right = 279.0
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="SubmitBtn" parent="Panel/VBoxContainer/Name/HBoxContainer" instance=ExtResource("4_gdi4d")]
+layout_mode = 2
+text = "Submit"
+
+[node name="CancelBtn" parent="Panel/VBoxContainer/Name/HBoxContainer" instance=ExtResource("4_gdi4d")]
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="pressed" from="Panel/VBoxContainer/Name/HBoxContainer/SubmitBtn" to="." method="_on_submit_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Name/HBoxContainer/CancelBtn" to="." method="_on_cancel_pressed"]

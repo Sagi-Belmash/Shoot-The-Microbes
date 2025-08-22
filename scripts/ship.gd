@@ -1,16 +1,18 @@
 extends Area2D
-signal hit
 signal shoot
+signal hit
+signal game_over
 
 var screen_size
 
 const SPEED = 1000
 var current_speed = 0
-var velocity = Vector2.ZERO
 var dead = false
 
-var SHOOT_DELAY = 0.3
+const SHOOT_DELAY = 0.3
 var can_shoot = true
+
+var inviciblity_frames = 5
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -18,7 +20,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not dead:
+	if is_visible_in_tree() and not dead:
 		# Shoot handling
 		if Input.is_action_pressed("shoot") and can_shoot:
 			shoot.emit()
@@ -42,26 +44,26 @@ func _physics_process(delta: float) -> void:
 			@warning_ignore("integer_division")
 			current_speed -= SPEED / 4 * delta
 		current_speed = clampf(current_speed, 0, 500)
-		velocity = dirVec * current_speed
-		position += velocity * delta
+		position += dirVec * current_speed * delta
 		position = position.clamp(Vector2.ZERO, screen_size)
 
 
 func _on_body_entered(_body: Node2D) -> void:
 	hit.emit()
+	GameData.lives -= 1
+	if GameData.lives == 0:
+		death()
+	else:
+		$CollisionPolygon2D.set_deferred("disabled", true)
+		for i in range(inviciblity_frames):
+			modulate.a = 0
+			await get_tree().create_timer(0.1).timeout
+			modulate.a = 1
+			await get_tree().create_timer(0.1).timeout
+		$CollisionPolygon2D.set_deferred("disabled", false)
 
 
-func ship_hit():
-	$CollisionPolygon2D.set_deferred("disabled", true)
-	for i in range(5):
-		hide()
-		await get_tree().create_timer(0.1).timeout
-		show()
-		await get_tree().create_timer(0.1).timeout
-	$CollisionPolygon2D.set_deferred("disabled", false)
-
-
-func game_over():
+func death():
 	$CollisionPolygon2D.set_deferred("disabled", true)
 	await get_tree().create_timer(0.1).timeout
 	z_index = 100
@@ -69,6 +71,7 @@ func game_over():
 	$AnimatedSprite2D.play("explode")
 	await get_tree().create_timer(2).timeout
 	hide()
+	game_over.emit()
 
 
 func start(pos):

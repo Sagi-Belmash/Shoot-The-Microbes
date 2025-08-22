@@ -1,0 +1,46 @@
+{
+  "easy": [
+	{
+	  "name":"Momo",
+	  "score":30
+	},
+	{
+	  "name":"Sagi",
+	  "score":12
+	},
+	{
+	  "name": "Yoyo",
+	  "score":50
+	},
+	{
+	  "name":"Bob",
+	  "score":69
+	},
+	{
+	  "name":"MAMAMAMAMA",
+	  "score":3
+	},
+	{
+	  "name":"Ezra",
+	  "score":100
+	},
+	{
+	  "name":"Lily",
+	  "score":8
+	},
+	{
+	  "name":"Pinchas",
+	  "score":80
+	},
+	{
+	  "name":"Gaga",
+	  "score":24
+	}
+  ],
+  "normal": [
+	
+  ],
+  "hard": [
+	
+  ]
+}
