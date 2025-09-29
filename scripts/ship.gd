@@ -1,13 +1,16 @@
 extends Area2D
+class_name Ship
+
 signal shoot
 signal hit
 signal game_over
 
-var screen_size
+var screen_size: Vector2
 
-const SPEED = 1000
-var current_speed = 0
-var dead = false
+const SPEED := 20.0
+var velocity := Vector2.ZERO
+const MAX_VELOCITY := Vector2(50,50)
+var dead := false
 
 const SHOOT_DELAY = 0.3
 var can_shoot = true
@@ -20,6 +23,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	var x_speed: float
+	var y_speed: float
 	if is_visible_in_tree() and not dead:
 		# Shoot handling
 		if Input.is_action_pressed("shoot") and can_shoot:
@@ -36,16 +41,26 @@ func _physics_process(delta: float) -> void:
 		var degrees = rotation_degrees - 90
 		var dirVec = Vector2(cos(deg_to_rad(degrees)), sin(deg_to_rad(degrees)))
 		if Input.is_action_pressed("move"):
-			current_speed += SPEED * delta
+			velocity += SPEED * delta * dirVec
+			velocity = velocity.clamp(-MAX_VELOCITY, MAX_VELOCITY)
 			$AnimatedSprite2D.play("move")
 		else:
 			$AnimatedSprite2D.stop()
-		
-			@warning_ignore("integer_division")
-			current_speed -= SPEED / 4 * delta
-		current_speed = clampf(current_speed, 0, 500)
-		position += dirVec * current_speed * delta
+			
+			if velocity.x != 0:
+				x_speed = max(0, abs(velocity.x) - SPEED / 4 * delta)
+				velocity.x = velocity.x / abs(velocity.x) * x_speed
+			if velocity.y != 0:
+				y_speed = max(0, abs(velocity.y) - SPEED / 4 * delta)
+				velocity.y = velocity.y / abs(velocity.y) * y_speed
+				
+		position += velocity
 		position = position.clamp(Vector2.ZERO, screen_size)
+		
+		if position.x == 0 or position.x == screen_size.x:
+			velocity.x = 0
+		if position.y == 0 or position.y == screen_size.y:
+			velocity.y = 0
 
 
 func _on_body_entered(_body: Node2D) -> void:

@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqkx4slx8fjmt"]
+[gd_scene load_steps=6 format=3 uid="uid://dqkx4slx8fjmt"]
 
 [ext_resource type="Script" uid="uid://bhgmmh6ktjki5" path="res://scripts/new_high_score.gd" id="1_u1k5a"]
 [ext_resource type="StyleBox" uid="uid://dokl011h350b2" path="res://assets/styles/Window.tres" id="2_p13my"]
 [ext_resource type="FontFile" uid="uid://bsi4q0ff6yrdo" path="res://assets/fonts/Xolonium-Regular.ttf" id="3_2w6v6"]
 [ext_resource type="PackedScene" uid="uid://bryp0fjw86bk1" path="res://scenes/general/Button.tscn" id="4_gdi4d"]
+
+[sub_resource type="Theme" id="Theme_u1k5a"]
+default_font = ExtResource("3_2w6v6")
+default_font_size = 28
 
 [node name="NewHighScore" type="Control"]
 layout_mode = 3
@@ -67,6 +71,12 @@ offset_right = 318.5
 offset_bottom = 102.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_u1k5a")
+theme_override_fonts/font = ExtResource("3_2w6v6")
+theme_override_font_sizes/font_size = 32
+wrap_mode = 1
+scroll_fit_content_height = true
+scroll_fit_content_width = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/Name"]
 layout_mode = 1
@@ -92,5 +102,7 @@ text = "Submit"
 layout_mode = 2
 text = "Cancel"
 
+[connection signal="focus_entered" from="Panel/VBoxContainer/Name/NameEdit" to="." method="_on_name_edit_focus_entered"]
+[connection signal="focus_exited" from="Panel/VBoxContainer/Name/NameEdit" to="." method="_on_name_edit_focus_exited"]
 [connection signal="pressed" from="Panel/VBoxContainer/Name/HBoxContainer/SubmitBtn" to="." method="_on_submit_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Name/HBoxContainer/CancelBtn" to="." method="_on_cancel_pressed"]

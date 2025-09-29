@@ -161,6 +161,7 @@ offset_right = 206.0
 offset_bottom = 78.0
 text = "Back"
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="Panel/VBoxContainer/FullScreen/FullscreenBtn" to="." method="_on_fullscreen_pressed"]
 [connection signal="value_changed" from="Panel/VBoxContainer/Volume/VolumeSlider" to="." method="_on_volume_changed"]
 [connection signal="pressed" from="Panel/Back" to="." method="_on_back_pressed"]

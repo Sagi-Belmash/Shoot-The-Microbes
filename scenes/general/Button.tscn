@@ -26,6 +26,7 @@ content_margin_right = 20.0
 bg_color = Color(0.136826, 0.136826, 0.136826, 1)
 
 [node name="Button" type="Button"]
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("1_rtit6")
 theme_override_font_sizes/font_size = 64
 theme_override_styles/focus = SubResource("StyleBoxFlat_u5roi")

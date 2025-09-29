@@ -3,6 +3,10 @@ signal main_menu
 
 @export var game: PackedScene
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("escape"):
+		_on_back_pressed()
+
 func _on_back_pressed() -> void:
 	main_menu.emit()
 	hide()

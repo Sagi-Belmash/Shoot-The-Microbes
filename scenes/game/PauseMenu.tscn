@@ -32,6 +32,7 @@ text = "Main Menu"
 layout_mode = 2
 text = "Quit"
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause") and can_pause:
+	if Input.is_action_just_pressed("escape") and can_pause:
 		if get_tree().paused:
 			_on_resume()
 		else:
@@ -49,6 +49,9 @@ func remove_life():
 	$Lives.remove_life()
 	if $Lives.lives == 0:
 		can_pause = false
+		
+func add_life():
+	$Lives.add_life()
 
 
 func game_over(score: int):

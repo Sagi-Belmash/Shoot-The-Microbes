@@ -14,3 +14,9 @@ func _ready() -> void:
 func remove_life():
 	lives -= 1
 	remove_child(get_children()[lives])
+
+func add_life():
+	var life_dup = $Life.duplicate()
+	life_dup.position = $Life.position + Vector2.RIGHT * 50 * (lives)
+	add_child(life_dup)
+	lives += 1

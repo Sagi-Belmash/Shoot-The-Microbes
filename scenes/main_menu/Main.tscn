@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bkcykslm726mu"]
+[gd_scene load_steps=11 format=3 uid="uid://bkcykslm726mu"]
 
 [ext_resource type="PackedScene" uid="uid://b6ovxc744bjwk" path="res://scenes/main_menu/MainMenu.tscn" id="1_ffc1a"]
 [ext_resource type="Script" uid="uid://b2ubyy0q00f1o" path="res://scripts/main.gd" id="1_h816l"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://jj2q0b0r5213" path="res://scenes/main_menu/Difficulty.tscn" id="3_26284"]
 [ext_resource type="PackedScene" uid="uid://dwrsq7prehsx2" path="res://scenes/main_menu/Leaderboard.tscn" id="5_db4ry"]
 [ext_resource type="PackedScene" uid="uid://2vbtn5wwtp12" path="res://scenes/main_menu/Options.tscn" id="6_i7h5a"]
+[ext_resource type="PackedScene" uid="uid://bobsfc0dtj24t" path="res://scenes/main_menu/Instructions.tscn" id="7_i7h5a"]
 
 [sub_resource type="Gradient" id="Gradient_db4ry"]
 interpolation_mode = 2
@@ -32,25 +33,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_i7h5a")
 
-[node name="MainMenu" parent="." instance=ExtResource("1_ffc1a")]
-z_index = 100
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -237.5
-offset_top = -214.0
-offset_right = 237.5
-offset_bottom = 214.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(237.5, 214)
-
-[node name="Difficulty" parent="." instance=ExtResource("3_26284")]
-visible = false
-z_index = 100
-
 [node name="AsteroidTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
@@ -64,6 +46,18 @@ visible = false
 position = Vector2(-64, 1504)
 rotation = -1.5708
 
+[node name="MainMenu" parent="." instance=ExtResource("1_ffc1a")]
+z_index = 100
+offset_left = -237.5
+offset_top = -214.0
+offset_right = 237.5
+offset_bottom = 214.0
+pivot_offset = Vector2(237.5, 214)
+
+[node name="Difficulty" parent="." instance=ExtResource("3_26284")]
+visible = false
+z_index = 100
+
 [node name="Leaderboard" parent="." instance=ExtResource("5_db4ry")]
 visible = false
 z_index = 100
@@ -76,9 +70,16 @@ offset_top = -43.0
 offset_right = 575.0
 offset_bottom = 43.0
 
+[node name="Instructions" parent="." instance=ExtResource("7_i7h5a")]
+visible = false
+z_index = 100
+
+[connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]
+[connection signal="instuctions" from="MainMenu" to="." method="_on_instructions_pressed"]
 [connection signal="leaderboard" from="MainMenu" to="." method="_on_leaderboard_pressed"]
 [connection signal="options" from="MainMenu" to="." method="_on_options_pressed"]
-[connection signal="start" from="MainMenu" to="." method="_on_start"]
+[connection signal="start" from="MainMenu" to="." method="_on_start_pressed"]
 [connection signal="main_menu" from="Difficulty" to="." method="_on_main_menu_pressed"]
-[connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]
+[connection signal="main_menu" from="Leaderboard" to="." method="_on_main_menu_pressed"]
 [connection signal="main_menu" from="Options" to="." method="_on_main_menu_pressed"]
+[connection signal="main_menu" from="Instructions" to="." method="_on_main_menu_pressed"]

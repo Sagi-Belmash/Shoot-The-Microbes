@@ -1,4 +1,5 @@
 extends Area2D
+class_name Bullet
 
 var linear_velocity = Vector2.ZERO
 
