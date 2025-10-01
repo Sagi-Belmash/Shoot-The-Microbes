@@ -9,7 +9,7 @@ signal main_menu
 var current_instruction := 0
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("escape"):
 		_on_back_pressed()
 		

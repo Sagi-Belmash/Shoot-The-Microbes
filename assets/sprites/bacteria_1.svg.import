@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvho18dbbj5ug"
-path="res://.godot/imported/asteroid_2.svg-3ad4d024cd419f5093b198dbe896a9f0.ctex"
+uid="uid://c2m8jukejihca"
+path="res://.godot/imported/bacteria_1.svg-a1b7a86a4f762f0ab915e9f69766a816.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/asteroid_2.svg"
-dest_files=["res://.godot/imported/asteroid_2.svg-3ad4d024cd419f5093b198dbe896a9f0.ctex"]
+source_file="res://assets/sprites/bacteria_1.svg"
+dest_files=["res://.godot/imported/bacteria_1.svg-a1b7a86a4f762f0ab915e9f69766a816.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 extends Node
-@export var asteroid_scene : PackedScene
+@export var enemy_scene : PackedScene
 
-const ASTEROID_BASE_VELOCITY = Vector2(200, 0)
+const ENEMY_BASE_VELOCITY = Vector2(200, 0)
 
 
 
@@ -15,7 +15,7 @@ func _ready() -> void:
 func _update_window():
 	var screen_size = get_viewport().size
 	var point_offset = 64
-	var curve: Curve2D = $AsteroidPath.get_curve()
+	var curve: Curve2D = $EnemyPath.get_curve()
 	curve.clear_points()
 	curve.add_point(Vector2(-point_offset, -point_offset))
 	curve.add_point(Vector2(screen_size.x + point_offset, -point_offset))
@@ -24,26 +24,25 @@ func _update_window():
 	curve.add_point(Vector2(-point_offset, -point_offset))
 
 
-func _on_asteroid_timer_timeout() -> void:
-	call_deferred("_spawn_asteroid")
+func _on_enemy_timer_timeout() -> void:
+	print("spawn")
+	call_deferred("_spawn_enemy")
 
 
-func _spawn_asteroid():
-	var asteroid = asteroid_scene.instantiate()
+func _spawn_enemy():
+	var enemy = enemy_scene.instantiate()
 	
-	var asteroid_spawn_location = $AsteroidPath/AsteroidSpawnLocation
-	asteroid_spawn_location.progress_ratio = randf()
+	var enemy_spawn_location = $EnemyPath/EnemySpawnLocation
+	enemy_spawn_location.progress_ratio = randf()
 	
-	asteroid.position = asteroid_spawn_location.position
+	enemy.position = enemy_spawn_location.position
 	
-	var direction = asteroid_spawn_location.rotation + PI / 2
+	var direction = enemy_spawn_location.rotation + PI / 2
 	
 	direction += randf_range(-PI / 4, PI / 4)
 	
-	asteroid.linear_velocity = ASTEROID_BASE_VELOCITY.rotated(direction)
-	
-	add_child(asteroid)
-	asteroid.linear_velocity *= asteroid.speed_scale[asteroid.asteroid_size]
+	add_child(enemy)
+	enemy.set_velocity(ENEMY_BASE_VELOCITY.rotated(direction))
 
 
 func _on_start_pressed() -> void:

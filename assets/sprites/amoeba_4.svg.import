@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1w0o5l7hwxfa"
-path="res://.godot/imported/asteroid_1.svg-4e759fca7044381f5dd32c1e28d3dbe2.ctex"
+uid="uid://cuel6et31a2fe"
+path="res://.godot/imported/amoeba_4.svg-fc3af8f27b1443b167e8430caed3e5c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/asteroid_1.svg"
-dest_files=["res://.godot/imported/asteroid_1.svg-4e759fca7044381f5dd32c1e28d3dbe2.ctex"]
+source_file="res://assets/sprites/amoeba_4.svg"
+dest_files=["res://.godot/imported/amoeba_4.svg-fc3af8f27b1443b167e8430caed3e5c0.ctex"]
 
 [params]
 

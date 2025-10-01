@@ -8,9 +8,9 @@ func _ready() -> void:
 	var root := get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
 
-func switch_to_game(lives: int, asteroid_spawn_rate: float, difficulty: String):
+func switch_to_game(lives: int, enemy_spawn_rate: float, difficulty: String):
 	GameData.lives = lives
-	GameData.asteroid_spawn_rate = asteroid_spawn_rate
+	GameData.enemy_spawn_rate = enemy_spawn_rate
 	GameData.difficulty = difficulty
 	call_deferred("_deferred_switch_scene", game_path)
 

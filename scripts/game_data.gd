@@ -1,7 +1,7 @@
 extends Node
 
 var lives: int
-var asteroid_spawn_rate: float
+var enemy_spawn_rate: float
 var difficulty: String
 var high_score = {"easy": 0, "normal": 0, "hard": 0}
 const leaderboard_data_path = "res://data/leaderboard.json"

@@ -2,7 +2,7 @@ extends Control
 
 var score
 @onready var highscore_label: Label = $Panel/VBoxContainer/HighScoreLabel
-@onready var name_edit: TextEdit = $Panel/VBoxContainer/Name/NameEdit
+@onready var name_edit: LineEdit = $Panel/VBoxContainer/Name/NameEdit
 
 func _process(_delta: float) -> void:
 	if visible:

@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://rrf4ib6j3as3"]
+
+[ext_resource type="Script" uid="uid://btveyvp55grp1" path="res://scripts/bacteria.gd" id="1_1iax2"]
+[ext_resource type="Texture2D" uid="uid://c2m8jukejihca" path="res://assets/sprites/bacteria_1.svg" id="1_mpcju"]
+[ext_resource type="Texture2D" uid="uid://s7rssqctty2v" path="res://assets/sprites/bacteria_2.svg" id="2_1iax2"]
+[ext_resource type="Texture2D" uid="uid://blnu1epxcprr4" path="res://assets/sprites/bacteria_3.svg" id="3_whdmj"]
+[ext_resource type="Texture2D" uid="uid://bgmow78nu6xnv" path="res://assets/sprites/bacteria_4.svg" id="4_luxdy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kmu36"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mpcju")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1iax2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_whdmj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_luxdy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_whdmj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1iax2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ot3r0"]
+radius = 21.0
+height = 80.0
+
+[node name="Bacteria" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_1iax2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.859999, 34.14)
+scale = Vector2(0.277, 0.261)
+sprite_frames = SubResource("SpriteFrames_kmu36")
+autoplay = "default"
+frame_progress = 0.211734
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_ot3r0")

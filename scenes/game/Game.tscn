@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://csja0gtly5d8u" path="res://scripts/game.gd" id="1_ibkli"]
 [ext_resource type="PackedScene" uid="uid://3x1l226dhege" path="res://scenes/game/Ship.tscn" id="3_78awf"]
-[ext_resource type="PackedScene" uid="uid://b4ibauabpn711" path="res://scenes/general/Asteroid.tscn" id="3_cpr0p"]
+[ext_resource type="PackedScene" uid="uid://b4ibauabpn711" path="res://scenes/general/Enemy.tscn" id="3_cpr0p"]
 [ext_resource type="PackedScene" uid="uid://bxecfsljjxh7l" path="res://scenes/game/Bullet.tscn" id="3_s0nni"]
 [ext_resource type="PackedScene" uid="uid://dymbtbxa1w3oh" path="res://scenes/game/PowerUp.tscn" id="4_365ku"]
 [ext_resource type="PackedScene" uid="uid://ds5wba0klgjum" path="res://scenes/game/HUD.tscn" id="7_kiw3p"]
@@ -21,7 +21,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="Game" type="Node"]
 script = ExtResource("1_ibkli")
-asteroid_scene = ExtResource("3_cpr0p")
+enemy_scene = ExtResource("3_cpr0p")
 bullet_scene = ExtResource("3_s0nni")
 powerup_scene = ExtResource("4_365ku")
 
@@ -39,13 +39,13 @@ texture = SubResource("GradientTexture2D_lyhax")
 [node name="StartTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="AsteroidTimer" type="Timer" parent="."]
+[node name="EnemyTimer" type="Timer" parent="."]
 wait_time = 0.5
 
-[node name="AsteroidPath" type="Path2D" parent="."]
+[node name="EnemyPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_qbsmt")
 
-[node name="AsteroidSpawnLocation" type="PathFollow2D" parent="AsteroidPath"]
+[node name="EnemySpawnLocation" type="PathFollow2D" parent="EnemyPath"]
 rotation = -1.5708
 
 [node name="Ship" parent="." instance=ExtResource("3_78awf")]
@@ -53,7 +53,7 @@ rotation = -1.5708
 [node name="HUD" parent="." instance=ExtResource("7_kiw3p")]
 
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
-[connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]
+[connection signal="timeout" from="EnemyTimer" to="." method="_on_asteroid_timer_timeout"]
 [connection signal="game_over" from="Ship" to="." method="_on_game_over"]
 [connection signal="hit" from="Ship" to="." method="_on_ship_hit"]
 [connection signal="shoot" from="Ship" to="." method="_on_ship_shoot"]
