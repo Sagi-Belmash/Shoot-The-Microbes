@@ -10,10 +10,13 @@ config_version=5
 
 [application]
 
-config/name="Microbes"
+config/name="Shoot The Microbes"
+config/version="1.0.0.0"
 run/main_scene="uid://bkcykslm726mu"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="uid://bcfcno16vf3p8"
+boot_splash/image="uid://spcj73xhgqty"
+config/icon="uid://cuel6et31a2fe"
+boot_splash/minimum_display_time=2000
 
 [autoload]
 
