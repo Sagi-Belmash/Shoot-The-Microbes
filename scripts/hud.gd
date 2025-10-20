@@ -5,7 +5,7 @@ var can_pause = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	await show_message("SHOOT THE ASTEROIDS!")
+	await show_message("SHOOT THE MICROBES!")
 	await countdown()
 	can_pause = true
 	start.emit()
@@ -23,7 +23,7 @@ func countdown():
 	$Countdown.show()
 	for i in range(3):
 		$Countdown.text = str(3 - i)
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(0.75).timeout
 	$Countdown.hide()
 	get_tree().paused = false
 

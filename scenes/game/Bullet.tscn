@@ -3,18 +3,19 @@
 [ext_resource type="Texture2D" uid="uid://ds3y6dil3rjx1" path="res://assets/sprites/bullet.svg" id="1_hf8mt"]
 [ext_resource type="Script" uid="uid://c4kjrngv71ukx" path="res://scripts/bullet.gd" id="1_p1sfj"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p1sfj"]
-height = 20.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8xvcs"]
+size = Vector2(12, 40)
 
 [node name="Bullet" type="Area2D"]
 z_index = -1
 script = ExtResource("1_p1sfj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_p1sfj")
+shape = SubResource("RectangleShape2D_8xvcs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.02, 0.02)
+position = Vector2(4.76837e-07, 0)
+scale = Vector2(0.0357617, 0.0402734)
 texture = ExtResource("1_hf8mt")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

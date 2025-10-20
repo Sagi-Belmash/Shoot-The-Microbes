@@ -31,13 +31,16 @@ collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_rjbuw")
 
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -40)
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(25, 53.5, -8, 68.5, -41.5, 71, -54, 62.5, -60, 26, -5, -34, 41.5, -34, 58.5, 4.5, 50.5, 31.5)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-0.859999, 34.14)
+position = Vector2(-2.11758e-22, -3)
 scale = Vector2(0.277, 0.261)
 sprite_frames = SubResource("SpriteFrames_0q6uo")
 autoplay = "default"
 frame_progress = 0.137184
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
-scale = Vector2(2, 2)
-polygon = PackedVector2Array(25, 53.5, -8, 68.5, -41.5, 71, -54, 62.5, -60, 26, -5, -34, 41.5, -34, 58.5, 4.5, 50.5, 31.5)
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

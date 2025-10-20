@@ -1,19 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbn18veehan4q"]
+[gd_scene load_steps=9 format=3 uid="uid://bbn18veehan4q"]
 
 [ext_resource type="Script" uid="uid://csja0gtly5d8u" path="res://scripts/game.gd" id="1_ibkli"]
-[ext_resource type="PackedScene" uid="uid://3x1l226dhege" path="res://scenes/game/Ship.tscn" id="3_78awf"]
-[ext_resource type="PackedScene" uid="uid://b4ibauabpn711" path="res://scenes/general/Enemy.tscn" id="3_cpr0p"]
+[ext_resource type="PackedScene" uid="uid://3x1l226dhege" path="res://scenes/game/Nanobot.tscn" id="3_78awf"]
 [ext_resource type="PackedScene" uid="uid://bxecfsljjxh7l" path="res://scenes/game/Bullet.tscn" id="3_s0nni"]
-[ext_resource type="PackedScene" uid="uid://dymbtbxa1w3oh" path="res://scenes/game/PowerUp.tscn" id="4_365ku"]
+[ext_resource type="Texture2D" uid="uid://bbrrpftmpt41u" path="res://assets/sprites/background-01.svg" id="6_365ku"]
 [ext_resource type="PackedScene" uid="uid://ds5wba0klgjum" path="res://scenes/game/HUD.tscn" id="7_kiw3p"]
 
-[sub_resource type="Gradient" id="Gradient_db4ry"]
+[sub_resource type="Gradient" id="Gradient_365ku"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0.98, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.988235)
+colors = PackedColorArray(0.0705882, 0.317647, 0.298039, 0, 0, 0.270588, 0.247059, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_lyhax"]
-gradient = SubResource("Gradient_db4ry")
+gradient = SubResource("Gradient_365ku")
 fill = 2
 fill_from = Vector2(0.5, 0.5)
 
@@ -21,9 +20,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="Game" type="Node"]
 script = ExtResource("1_ibkli")
-enemy_scene = ExtResource("3_cpr0p")
 bullet_scene = ExtResource("3_s0nni")
-powerup_scene = ExtResource("4_365ku")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = 99
@@ -37,6 +34,7 @@ texture = SubResource("GradientTexture2D_lyhax")
 [node name="StartPosition" type="Marker2D" parent="."]
 
 [node name="StartTimer" type="Timer" parent="."]
+wait_time = 0.75
 one_shot = true
 
 [node name="EnemyTimer" type="Timer" parent="."]
@@ -48,13 +46,19 @@ curve = SubResource("Curve2D_qbsmt")
 [node name="EnemySpawnLocation" type="PathFollow2D" parent="EnemyPath"]
 rotation = -1.5708
 
-[node name="Ship" parent="." instance=ExtResource("3_78awf")]
+[node name="Nanobot" parent="." instance=ExtResource("3_78awf")]
 
 [node name="HUD" parent="." instance=ExtResource("7_kiw3p")]
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -50
+position = Vector2(944, 532)
+scale = Vector2(1.05833, 1.08889)
+texture = ExtResource("6_365ku")
+
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
-[connection signal="timeout" from="EnemyTimer" to="." method="_on_asteroid_timer_timeout"]
-[connection signal="game_over" from="Ship" to="." method="_on_game_over"]
-[connection signal="hit" from="Ship" to="." method="_on_ship_hit"]
-[connection signal="shoot" from="Ship" to="." method="_on_ship_shoot"]
+[connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]
+[connection signal="game_over" from="Nanobot" to="." method="_on_game_over"]
+[connection signal="hit" from="Nanobot" to="." method="_on_nanobot_hit"]
+[connection signal="shoot" from="Nanobot" to="." method="_on_nanobot_shoot"]
 [connection signal="start" from="HUD" to="." method="_on_start"]

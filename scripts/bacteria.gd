@@ -1,6 +1,6 @@
-extends RigidBody2D
+extends Enemy
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	rotation = linear_velocity.angle() + PI / 2
+	enemy_size = Sizes.MEDIUM

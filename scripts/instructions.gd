@@ -5,6 +5,7 @@ signal main_menu
 @onready var instruction_buttons = $InstructionButtons
 @onready var bullet_path : Path2D = $InstructionContainer/Shooting/BulletPath
 @onready var bullet_img = preload("res://assets/sprites/bullet.svg")
+@onready var nanobot_path_follow : PathFollow2D = $InstructionContainer/Moving/VBoxContainer/Path2D/PathFollow2D
 
 var current_instruction := 0
 
@@ -15,7 +16,9 @@ func _process(_delta: float) -> void:
 		
 	for follow in bullet_path.get_children():
 		if follow is PathFollow2D:
-			follow.progress_ratio += 0.01
+			follow.progress_ratio += 0.0025
+			
+	nanobot_path_follow.progress_ratio += 0.0025
 
 
 func _on_back_pressed():

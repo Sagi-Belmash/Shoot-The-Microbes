@@ -10,16 +10,18 @@ config_version=5
 
 [application]
 
-config/name="Asteroirds"
+config/name="Microbes"
 run/main_scene="uid://bkcykslm726mu"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://bcfcno16vf3p8"
 
 [autoload]
 
 SceneSwitcher="*res://scripts/scene_switcher.gd"
 GameData="*res://scripts/game_data.gd"
 GeneralHandler="*res://scripts/general_handler.gd"
+EnemySpawner="*res://scripts/enemy_spawner.gd"
+AudioController="*res://scenes/general/AudioController.tscn"
 
 [display]
 
@@ -84,4 +86,4 @@ submit={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+environment/defaults/default_clear_color=Color(0, 0.270588, 0.247059, 1)

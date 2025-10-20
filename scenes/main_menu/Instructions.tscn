@@ -1,13 +1,12 @@
-[gd_scene load_steps=27 format=3 uid="uid://bobsfc0dtj24t"]
+[gd_scene load_steps=24 format=3 uid="uid://bobsfc0dtj24t"]
 
 [ext_resource type="StyleBox" uid="uid://dokl011h350b2" path="res://assets/styles/Window.tres" id="1_hrq6v"]
 [ext_resource type="Script" uid="uid://duscvsrim4gn4" path="res://scripts/instructions.gd" id="1_lnhw6"]
 [ext_resource type="FontFile" uid="uid://bsi4q0ff6yrdo" path="res://assets/fonts/Xolonium-Regular.ttf" id="2_vlgwb"]
-[ext_resource type="Texture2D" uid="uid://bxekconmyld5y" path="res://assets/sprites/ship_off.svg" id="3_g0uh2"]
 [ext_resource type="Script" uid="uid://cbmhm6e16eofd" path="res://scripts/rotate_left_img.gd" id="4_lnhw6"]
+[ext_resource type="Texture2D" uid="uid://bcfcno16vf3p8" path="res://assets/sprites/nanobot.svg" id="4_p5uur"]
 [ext_resource type="PackedScene" uid="uid://bryp0fjw86bk1" path="res://scenes/general/Button.tscn" id="6_8l4ee"]
 [ext_resource type="Script" uid="uid://bxf0irw8q71qh" path="res://scripts/rotate_right_img.gd" id="6_apdbs"]
-[ext_resource type="Texture2D" uid="uid://rcya2hiesypk" path="res://assets/sprites/ship_on.svg" id="7_c1x4n"]
 [ext_resource type="Texture2D" uid="uid://ds3y6dil3rjx1" path="res://assets/sprites/bullet.svg" id="8_4xf6f"]
 [ext_resource type="ButtonGroup" uid="uid://dbjovjf58tdjs" path="res://assets/button_groups/instructions.tres" id="10_hqvxw"]
 
@@ -41,43 +40,11 @@ font_size = 64
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqvxw"]
 bg_color = Color(1, 1, 1, 1)
 
-[sub_resource type="Animation" id="Animation_4xf6f"]
-resource_name = "Moving"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(0, 0, 0),
-"update": 1,
-"values": [ExtResource("3_g0uh2"), ExtResource("7_c1x4n"), ExtResource("7_c1x4n")]
-}
-
-[sub_resource type="Animation" id="Animation_hqvxw"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_g0uh2")]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_p5uur"]
+[sub_resource type="Curve2D" id="Curve2D_4xf6f"]
 _data = {
-&"Moving": SubResource("Animation_4xf6f"),
-&"RESET": SubResource("Animation_hqvxw")
+"points": PackedVector2Array(0, 0, 0, 0, 178, 316, 0, 0, 0, 0, 178, 250, 0, 0, 0, 0, 178, 316)
 }
+point_count = 3
 
 [sub_resource type="Curve2D" id="Curve2D_hqvxw"]
 _data = {
@@ -271,7 +238,7 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("3_g0uh2")
+texture = ExtResource("4_p5uur")
 expand_mode = 1
 stretch_mode = 4
 script = ExtResource("4_lnhw6")
@@ -348,7 +315,7 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("3_g0uh2")
+texture = ExtResource("4_p5uur")
 expand_mode = 1
 stretch_mode = 4
 script = ExtResource("6_apdbs")
@@ -376,11 +343,18 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InstructionContainer/Moving"]
-layout_mode = 2
-offset_left = 392.0
-offset_top = 173.0
-offset_right = 751.0
-offset_bottom = 523.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.5
+offset_top = -300.0
+offset_right = 179.5
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 50
 alignment = 1
 
@@ -441,20 +415,27 @@ label_settings = SubResource("LabelSettings_apdbs")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="InstructionContainer/Moving/VBoxContainer"]
+[node name="Path2D" type="Path2D" parent="InstructionContainer/Moving/VBoxContainer"]
+position = Vector2(0, 110)
+curve = SubResource("Curve2D_4xf6f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="InstructionContainer/Moving/VBoxContainer/Path2D"]
+position = Vector2(178, 316)
+rotation = -1.5708
+rotates = false
+
+[node name="TextureRect" type="TextureRect" parent="InstructionContainer/Moving/VBoxContainer/Path2D/PathFollow2D"]
 custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
+offset_left = 121.0
+offset_top = -100.0
+offset_right = 321.0
+offset_bottom = 100.0
+rotation = 1.5708
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("3_g0uh2")
+texture = ExtResource("4_p5uur")
 expand_mode = 1
 stretch_mode = 4
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="InstructionContainer/Moving/VBoxContainer/TextureRect"]
-libraries = {
-&"": SubResource("AnimationLibrary_p5uur")
-}
-autoplay = "Moving"
 
 [node name="Shooting" type="Control" parent="InstructionContainer"]
 visible = false
@@ -557,7 +538,7 @@ offset_bottom = 548.0
 rotation = 1.5708
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("3_g0uh2")
+texture = ExtResource("4_p5uur")
 expand_mode = 1
 stretch_mode = 4
 
@@ -573,12 +554,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -11.0
-offset_top = -10.0
-offset_right = 1013.0
-offset_bottom = 1014.0
+offset_left = 51.0
+offset_top = -25.0
+offset_right = 2555.0
+offset_bottom = 2401.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 1.5708
 scale = Vector2(0.02, 0.02)
 texture = ExtResource("8_4xf6f")
 
@@ -592,12 +574,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -11.0
-offset_top = -10.0
-offset_right = 1013.0
-offset_bottom = 1014.0
+offset_left = 51.0
+offset_top = -25.0
+offset_right = 2555.0
+offset_bottom = 2401.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 1.5708
 scale = Vector2(0.02, 0.02)
 texture = ExtResource("8_4xf6f")
 
@@ -611,12 +594,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -11.0
-offset_top = -10.0
-offset_right = 1013.0
-offset_bottom = 1014.0
+offset_left = 51.0
+offset_top = -25.0
+offset_right = 2555.0
+offset_bottom = 2401.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 1.5708
 scale = Vector2(0.02, 0.02)
 texture = ExtResource("8_4xf6f")
 
@@ -630,12 +614,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -11.0
-offset_top = -10.0
-offset_right = 1013.0
-offset_bottom = 1014.0
+offset_left = 51.0
+offset_top = -25.0
+offset_right = 2555.0
+offset_bottom = 2401.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 1.5708
 scale = Vector2(0.02, 0.02)
 texture = ExtResource("8_4xf6f")
 
@@ -649,12 +634,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -11.0
-offset_top = -10.0
-offset_right = 1013.0
-offset_bottom = 1014.0
+offset_left = 51.0
+offset_top = -25.0
+offset_right = 2555.0
+offset_bottom = 2401.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 1.5708
 scale = Vector2(0.02, 0.02)
 texture = ExtResource("8_4xf6f")
 

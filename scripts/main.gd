@@ -1,11 +1,7 @@
 extends Node
-@export var enemy_scene : PackedScene
-
-const ENEMY_BASE_VELOCITY = Vector2(200, 0)
-
-
 
 func _ready() -> void:
+	AudioController.play_main()
 	GameData.load_leaderboard()
 	get_tree().root.size_changed.connect(_update_window)
 	_update_window()
@@ -25,24 +21,17 @@ func _update_window():
 
 
 func _on_enemy_timer_timeout() -> void:
-	print("spawn")
 	call_deferred("_spawn_enemy")
 
 
 func _spawn_enemy():
-	var enemy = enemy_scene.instantiate()
-	
 	var enemy_spawn_location = $EnemyPath/EnemySpawnLocation
 	enemy_spawn_location.progress_ratio = randf()
+	var enemy_pos = enemy_spawn_location.position
+	var enemy_dir = enemy_spawn_location.rotation + PI / 2 + randf_range(-PI / 4, PI / 4)
 	
-	enemy.position = enemy_spawn_location.position
-	
-	var direction = enemy_spawn_location.rotation + PI / 2
-	
-	direction += randf_range(-PI / 4, PI / 4)
-	
+	var enemy := EnemySpawner.get_random_enemy(enemy_pos, enemy_dir)
 	add_child(enemy)
-	enemy.set_velocity(ENEMY_BASE_VELOCITY.rotated(direction))
 
 
 func _on_start_pressed() -> void:

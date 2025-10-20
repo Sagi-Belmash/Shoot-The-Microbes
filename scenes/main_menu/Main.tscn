@@ -2,19 +2,19 @@
 
 [ext_resource type="PackedScene" uid="uid://b6ovxc744bjwk" path="res://scenes/main_menu/MainMenu.tscn" id="1_ffc1a"]
 [ext_resource type="Script" uid="uid://b2ubyy0q00f1o" path="res://scripts/main.gd" id="1_h816l"]
-[ext_resource type="PackedScene" uid="uid://b4ibauabpn711" path="res://scenes/general/Enemy.tscn" id="2_26284"]
 [ext_resource type="PackedScene" uid="uid://jj2q0b0r5213" path="res://scenes/main_menu/Difficulty.tscn" id="3_26284"]
 [ext_resource type="PackedScene" uid="uid://dwrsq7prehsx2" path="res://scenes/main_menu/Leaderboard.tscn" id="5_db4ry"]
 [ext_resource type="PackedScene" uid="uid://2vbtn5wwtp12" path="res://scenes/main_menu/Options.tscn" id="6_i7h5a"]
+[ext_resource type="Texture2D" uid="uid://bbrrpftmpt41u" path="res://assets/sprites/background-01.svg" id="7_2f4bb"]
 [ext_resource type="PackedScene" uid="uid://bobsfc0dtj24t" path="res://scenes/main_menu/Instructions.tscn" id="7_i7h5a"]
 
-[sub_resource type="Gradient" id="Gradient_db4ry"]
+[sub_resource type="Gradient" id="Gradient_i7h5a"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0.98, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.988235)
+colors = PackedColorArray(0.0705882, 0.317647, 0.298039, 0, 0, 0.270588, 0.247059, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_i7h5a"]
-gradient = SubResource("Gradient_db4ry")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2f4bb"]
+gradient = SubResource("Gradient_i7h5a")
 fill = 2
 fill_from = Vector2(0.5, 0.5)
 
@@ -22,7 +22,6 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_h816l")
-enemy_scene = ExtResource("2_26284")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = 99
@@ -31,7 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_i7h5a")
+texture = SubResource("GradientTexture2D_2f4bb")
 
 [node name="EnemyTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -71,6 +70,12 @@ offset_bottom = 43.0
 [node name="Instructions" parent="." instance=ExtResource("7_i7h5a")]
 visible = false
 z_index = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -50
+position = Vector2(944, 532)
+scale = Vector2(1.05833, 1.08889)
+texture = ExtResource("7_2f4bb")
 
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]
 [connection signal="instuctions" from="MainMenu" to="." method="_on_instructions_pressed"]

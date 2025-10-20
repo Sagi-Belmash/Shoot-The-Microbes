@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080">
+  <!-- Generator: Adobe Illustrator 29.8.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 2)  -->
+  <defs>
+    <radialGradient id="radial-gradient" cx="812.272" cy="605.691" fx="919.5" fy="618.154" r="1076.892" gradientTransform="translate(-.031 -174.219) scale(1.115 1.161)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#006251"/>
+      <stop offset=".266" stop-color="#005b4c"/>
+      <stop offset=".641" stop-color="#004841"/>
+      <stop offset="1" stop-color="#003132"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient1" cx="333.565" cy="182.01" fx="341.096" fy="182.01" r="75.631" gradientTransform="translate(-84.7) scale(1.29 1)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient2" cx="653.705" cy="497.374" fx="668.699" fy="497.374" r="150.585" gradientTransform="matrix(1,0,0,1,0,0)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient3" cx="348.306" cy="780.771" fx="354.946" fy="780.771" r="66.688" gradientTransform="matrix(1,0,0,1,0,0)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient4" cx="1563.732" cy="331.852" fx="1578.017" fy="331.852" r="143.461" gradientTransform="matrix(1,0,0,1,0,0)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient5" cx="1172.857" cy="240.538" fx="1185.267" fy="240.538" r="124.637" gradientTransform="matrix(1,0,0,1,0,0)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient6" cx="1341.831" cy="678.103" fx="1352.182" fy="678.103" r="103.957" gradientTransform="translate(2004.939 -244.413) rotate(90) scale(.692 1)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient7" cx="893.747" cy="696.832" fx="893.747" fy="696.832" r="51.444" gradientTransform="matrix(1,0,0,1,0,0)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient8" cx="946.583" cy="918.724" fx="960.868" fy="918.724" r="143.461" gradientTransform="translate(535.728 485.279) scale(.494 .521)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient9" cx="412.45" cy="-404.481" fx="426.734" fy="-404.481" r="143.461" gradientTransform="translate(576.608 257.621) scale(.535 .548)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient10" cx="1653.886" cy="855.112" fx="1668.17" fy="855.112" r="143.461" gradientTransform="matrix(1,0,0,1,0,0)" xlink:href="#radial-gradient"/>
+  </defs>
+  <rect x=".272" y="1.949" width="1919.603" height="1077.742" fill="url(#radial-gradient)" stroke="#003132" stroke-miterlimit="10" stroke-width="1.138"/>
+  <ellipse cx="348.737" cy="183.174" rx="56.522" ry="53.981" fill="url(#radial-gradient1)"/>
+  <ellipse cx="659.289" cy="499.441" rx="99.072" ry="95.896" fill="url(#radial-gradient2)"/>
+  <ellipse cx="351.277" cy="781.415" rx="52.711" ry="29.849" fill="url(#radial-gradient3)"/>
+  <ellipse cx="1569.352" cy="333.686" rx="99.707" ry="85.1" fill="url(#radial-gradient4)"/>
+  <ellipse cx="1177.51" cy="242.236" rx="82.56" ry="78.749" fill="url(#radial-gradient5)"/>
+  <ellipse cx="1325.725" cy="687.695" rx="51.441" ry="54.961" transform="translate(555.947 1967.505) rotate(-86.391)" fill="url(#radial-gradient6)"/>
+  <ellipse cx="895.537" cy="697.585" rx="31.754" ry="34.929" fill="url(#radial-gradient7)"/>
+  <ellipse cx="1006.229" cy="964.588" rx="49.267" ry="44.309" fill="url(#radial-gradient8)"/>
+  <ellipse cx="800.396" cy="36.876" rx="53.372" ry="46.655" fill="url(#radial-gradient9)"/>
+  <ellipse cx="1659.506" cy="856.946" rx="99.707" ry="85.1" fill="url(#radial-gradient10)"/>
+</svg>
